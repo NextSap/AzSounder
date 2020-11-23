@@ -16,5 +16,4 @@ public class Serializer {
             return null;
         }
     }
-
 }

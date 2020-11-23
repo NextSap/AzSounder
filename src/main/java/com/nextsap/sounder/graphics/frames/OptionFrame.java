@@ -22,8 +22,8 @@ public class OptionFrame extends FrameManager {
 
     public OptionFrame() {
         this.setTitle("AzSounder - Options");
-        this.setWidth(550);
-        this.setHeight(330);
+        this.setWidth(560);
+        this.setHeight(340);
         this.initialize();
 
         this.getPanel().setLayout(new GridBagLayout());
@@ -106,7 +106,7 @@ public class OptionFrame extends FrameManager {
         JButton addButton = new JButton("Ajouter");
         addButton.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
         addButton.setBackground(new Color(108, 240, 152));
-        addButton.setPreferredSize(new Dimension(140,35));
+        addButton.setPreferredSize(new Dimension(140, 35));
         addButton.addActionListener(this::addClickEvent);
         buttonPanel.add(addButton);
 
@@ -116,7 +116,7 @@ public class OptionFrame extends FrameManager {
         JButton deleteButton = new JButton("Supprimer");
         deleteButton.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
         deleteButton.setBackground(new Color(239, 76, 76));
-        deleteButton.setPreferredSize(new Dimension(140,35));
+        deleteButton.setPreferredSize(new Dimension(140, 35));
         deleteButton.addActionListener(this::deleteClickEvent);
         buttonPanel.add(deleteButton);
 
@@ -153,6 +153,7 @@ public class OptionFrame extends FrameManager {
         if (this.configManager.getConfig().getCustomDetections().containsKey(this.stringTextField.getText())) {
             this.configManager.getConfig().removeCustomDetection(this.stringTextField.getText());
             this.configManager.getConfig().addCustomDetection(this.stringTextField.getText(), customDetection);
+            this.configManager.update();
             this.showInformationDialog("Succès !", "Vous avez modifié l'élément '" + this.stringTextField.getText() + "'");
             this.hide();
             return;
