@@ -13,7 +13,7 @@ The main part of the application developed in 2 days on **21 and 22** November 2
 # How to use
 ### 🇬🇧
 When you start the program, you can see 3 buttons, one to turn on, one to turn off and one to config the program. The following 'On' and 'Off' button are just used to start or stop the task who checks in the minecraft chat.
-- To add a new value in your program, you must click on "Options". After, enter a string to detect in the "String" case. Then, enter the path of the sound who will play. ⚠️ **Be careful ! The sound file's extention must be ".wav" ⚠️
+- To add a new value in your program, you must click on "Options". After, enter a string to detect in the "String" case. Then, enter the path of the sound who will play. ⚠️ **Be careful ! The sound file's extention must be ".wav"** ⚠️
 After this following operations, click on the green button.
 - To remove a value in your program, you must click on "Options". After, enter the string that you want to remove in the "String" case.
 After this following operations, click on the red button.
