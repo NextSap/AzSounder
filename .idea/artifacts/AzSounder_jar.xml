@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="AzSounder:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/AzSounder_jar</output-path>
+    <root id="archive" name="AzSounder.jar">
+      <element id="module-output" name="AzSounder" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/code/gson/gson/1.7.1/gson-1.7.1.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
