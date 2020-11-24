@@ -29,14 +29,14 @@ public class Loader {
             List<String> lines = Files.readAllLines(Paths.get(Settings.getLogPath()), StandardCharsets.UTF_8);
             List<String> chat = new ArrayList<>();
 
-            for (String line : lines) {
-                if (!line.contains(" [Client Thread/INFO]: [CHAT] ")) continue;
+            lines.parallelStream().forEach(line -> {
+                if (!line.contains(" [Client Thread/INFO]: [CHAT] ")) return;
 
                 long date = DateUtils.getTime(line.split("\\[")[1].split("]")[0]);
                 if (DateUtils.startAt(date, start)) {
                     chat.add(line.split(" \\[Client Thread/INFO]: \\[CHAT] ")[1]);
                 }
-            }
+            });
             return chat;
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,7 +53,7 @@ public class Loader {
             public void run() {
                 running = true;
                 List<String> logs = getLogs(System.currentTimeMillis() - 2000);
-                logs.forEach(log -> {
+                logs.parallelStream().forEach(log -> {
                     customConfig.getCustomDetections().forEach((name, detection) -> {
                         switch (detection.getOption()) {
                             case GLOBAL:
@@ -61,7 +61,7 @@ public class Loader {
                                     SoundUtils.play(detection.getSound_path());
                                 break;
                             case CHAT:
-                                if (!SplitUtils.isChat(log)) return;
+                                if (!SplitUtils.isChat(log) && !SplitUtils.isFreecube(log)) return;
                                 if (SplitUtils.parseChat(log).contains(name.toLowerCase()))
                                     SoundUtils.play(detection.getSound_path());
                                 break;

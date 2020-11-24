@@ -124,7 +124,15 @@ public class OptionFrame extends FrameManager {
         backButton.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
         backButton.setBackground(Color.ORANGE);
         backButton.addActionListener(this::backClickEvent);
+        backButton.setPreferredSize(new Dimension(100, 35));
         buttonPanel.add(backButton);
+
+        JButton listButton = new JButton("Liste");
+        listButton.setFont(new Font(Font.DIALOG, Font.BOLD, 20));
+        listButton.setBackground(new Color(6, 150, 159));
+        listButton.addActionListener(this::listClickEvent);
+        listButton.setPreferredSize(new Dimension(100, 35));
+        buttonPanel.add(listButton);
 
         constraints.gridx = 0;
         constraints.gridy = 4;
@@ -132,10 +140,31 @@ public class OptionFrame extends FrameManager {
     }
 
     private void addClickEvent(ActionEvent event) {
-        if (this.stringTextField.getText().equals("") || this.soundPathTextField.getText().equals("")) {
-            this.showErrorDialog("Erreur", "Vous devez spécifier un nom et un path pour ajouter un élément.");
+        if (this.stringTextField.getText().equals("")) {
+            this.showErrorDialog("Erreur", "Vous devez spécifier un nom pour ajouter un élément.");
             return;
         }
+
+        CustomDetection customDetection = new CustomDetection();
+        customDetection.setOptionByName(Objects.requireNonNull(this.valueBox.getSelectedItem()).toString());
+
+        if (this.configManager.getConfig().getCustomDetections().containsKey(this.stringTextField.getText())) {
+            if (this.soundPathTextField.getText().equals(""))
+                this.soundPathTextField.setText(this.configManager.getConfig().getCustomDetections().get(this.stringTextField.getText()).getSound_path());
+            customDetection.setSound_path(this.soundPathTextField.getText());
+            this.configManager.getConfig().removeCustomDetection(this.stringTextField.getText());
+            this.configManager.getConfig().addCustomDetection(this.stringTextField.getText(), customDetection);
+            this.configManager.update();
+            this.showInformationDialog("Succès !", "Vous avez modifié l'élément '" + this.stringTextField.getText() + "'");
+            this.hide();
+            return;
+        }
+
+        if (this.soundPathTextField.getText().equals("")) {
+            this.showErrorDialog("Erreur", "Vous devez spécifier un path pour ajouter un élément.");
+            return;
+        }
+
         File filetest = new File(this.soundPathTextField.getText());
         if (!filetest.exists()) {
             this.showErrorDialog("Erreur", "Ce fichier son n'existe pas.");
@@ -146,18 +175,7 @@ public class OptionFrame extends FrameManager {
             return;
         }
 
-        CustomDetection customDetection = new CustomDetection();
         customDetection.setSound_path(this.soundPathTextField.getText());
-        customDetection.setOptionByName(Objects.requireNonNull(this.valueBox.getSelectedItem()).toString());
-
-        if (this.configManager.getConfig().getCustomDetections().containsKey(this.stringTextField.getText())) {
-            this.configManager.getConfig().removeCustomDetection(this.stringTextField.getText());
-            this.configManager.getConfig().addCustomDetection(this.stringTextField.getText(), customDetection);
-            this.configManager.update();
-            this.showInformationDialog("Succès !", "Vous avez modifié l'élément '" + this.stringTextField.getText() + "'");
-            this.hide();
-            return;
-        }
 
         this.configManager.getConfig().addCustomDetection(this.stringTextField.getText(), customDetection);
         this.configManager.update();
@@ -183,5 +201,16 @@ public class OptionFrame extends FrameManager {
         this.stringTextField.setText("");
         this.soundPathTextField.setText("");
         this.hide();
+    }
+
+    private void listClickEvent(ActionEvent event) {
+        this.configManager.update();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("-----------------------------\n");
+        this.configManager.getConfig().getCustomDetections().forEach((name, detection) -> {
+            stringBuilder.append("String: '").append(name).append("'").append("\nSound Path: ").append(detection.getSound_path()).append("\nOption: ")
+                    .append(detection.getOption().getName()).append("\n-----------------------------\n");
+        });
+        this.showInformationDialog("AzSounder - Liste", stringBuilder.toString());
     }
 }
