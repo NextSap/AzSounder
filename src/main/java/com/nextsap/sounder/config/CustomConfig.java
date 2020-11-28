@@ -5,33 +5,33 @@ import java.util.Map;
 
 public class CustomConfig {
 
-    private Map<String, CustomDetection> customDetections;
+    private Map<String, CustomFilter> customFilters;
 
-    public CustomConfig(Map<String, CustomDetection> customDetections) {
-        this.customDetections = customDetections;
+    public CustomConfig(Map<String, CustomFilter> customFilters) {
+        this.customFilters = customFilters;
     }
 
     public CustomConfig() {
-        this.customDetections = new HashMap<>();
+        this.customFilters = new HashMap<>();
     }
 
-    public Map<String, CustomDetection> getCustomDetections() {
-        return customDetections;
+    public void addFilter(String name, CustomFilter customFilter) {
+        this.customFilters.put(name, customFilter);
     }
 
-    public void setCustomDetections(Map<String, CustomDetection> customDetections) {
-        this.customDetections = customDetections;
+    public Map<String, CustomFilter> getCustomFilters() {
+        return customFilters;
     }
 
-    public void addCustomDetection(String name, CustomDetection customDetection) {
-        this.customDetections.put(name, customDetection);
+    public void setCustomFilters(Map<String, CustomFilter> customFilters) {
+        this.customFilters = customFilters;
     }
 
-    public void removeCustomDetection(String name) {
-        this.customDetections.remove(name);
+    public void removeFilter(String name) {
+        this.customFilters.remove(name);
     }
 
-    public void removeCustomDetection(String name, CustomDetection customDetection) {
-        this.customDetections.remove(name, customDetection);
+    public void removeFilter(String name, CustomFilter customFilter) {
+        this.customFilters.remove(name, customFilter);
     }
 }

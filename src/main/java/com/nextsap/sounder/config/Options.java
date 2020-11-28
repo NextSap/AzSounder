@@ -1,21 +1,21 @@
 package com.nextsap.sounder.config;
 
-public enum Option {
+public enum Options {
 
     GLOBAL("Global"),
     CHAT("Chat"),
-    PRIVATE_MESSAGE("Private message"),
-    PARTY("Party Chat"),
-    STAFF_CHAT("Staff Chat");
+    PRIVATE_MESSAGE("Message privé"),
+    PARTY("Chat de Groupe"),
+    STAFF_CHAT("Chat du Staff");
 
     private final String name;
 
-    Option(String name) {
+    Options(String name) {
         this.name = name;
     }
 
-    public static Option getOptionByName(String name) {
-        for (Option o : Option.values()) {
+    public static Options getOptionByName(String name) {
+        for (Options o : Options.values()) {
             if (o.getName().equalsIgnoreCase(name))
                 return o;
         }

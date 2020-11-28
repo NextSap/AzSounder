@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class ConfigManager {
 
-    private CustomConfig config = new CustomConfig();
+    private CustomConfig config;
 
     public ConfigManager() {
         getConfigFromFile();
@@ -17,8 +17,6 @@ public class ConfigManager {
 
     public void update() {
         try {
-            if (this.config == null) this.config = new CustomConfig();
-
             String name = System.getProperty("user.name");
 
             FileWriter myWriter = new FileWriter("C:\\Users\\" + name + "\\AppData\\Roaming\\AzSounder\\Config.txt");
@@ -52,7 +50,6 @@ public class ConfigManager {
     }
 
     public CustomConfig getConfig() {
-        getConfigFromFile();
         return this.config;
     }
 }

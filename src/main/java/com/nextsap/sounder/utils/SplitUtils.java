@@ -1,25 +1,33 @@
 package com.nextsap.sounder.utils;
 
+import java.util.regex.Pattern;
+
 public class SplitUtils {
 
+    private static final String playerPattern = Pattern.compile("([a-zA-Z0-9_]{3,16})").pattern();
+
     public static boolean isChat(String line) {
-        return line.contains("✴") && (line.contains(": @") || line.contains(": "));
+        if (!line.contains(": @") && !line.contains(": ")) return false;
+        String pseudo = line.split(":")[0].split(" ")[line.split(":")[0].split(" ").length - 1];
+        return pseudo.matches(playerPattern);
     }
 
     public static boolean isPrivateMessage(String line) {
-        return line.contains(" -> ") && line.contains("][R]");
+        return line.split(" ")[1].matches(playerPattern) && line.contains(" -> Moi][R] ");
     }
 
     public static boolean isFreecube(String line) {
-        return line.contains(" -> ") && line.contains("]") && ((line.split(" -> ")[1].split("] ")[0].matches("([A-D][0-9]{1,6})")) || (line.contains(" -> Spawn] ")));
+        return line.split(" ")[1].matches(playerPattern) && line.contains(" -> ") && line.contains("]") && ((line.split(" -> ")[1].split("] ")[0].matches("([A-D][0-9]{1,6})")) || (line.contains(" -> Spawn] ")));
     }
 
     public static boolean isParty(String line) {
-        return line.contains("[Groupe] ") && line.contains(": &");
+        if (line.split(" ")[1].length() - 1 == -1) return false;
+        return line.split(" ")[1].substring(0, line.split(" ")[1].length() - 1).matches(playerPattern) && line.contains("[Groupe] ") && line.contains(": &");
     }
 
     public static boolean isStaffChat(String line) {
-        return line.startsWith("[Staff]") || line.startsWith("[Modo]") || line.startsWith("[SuperModo]");
+        if (line.split(" ")[1].length() - 1 == -1) return false;
+        return line.split(" ")[2].substring(0, line.split(" ")[2].length() - 1).matches(playerPattern) && line.startsWith("[Staff]") || line.startsWith("[Modo]") || line.startsWith("[SuperModo]");
     }
 
     public static String parseGlobal(String line) {

@@ -53,10 +53,7 @@ public class FrameManager {
      */
     public void show() {
         this.frame.setLocationRelativeTo(null);
-        if (this.main) this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        else {
-            this.frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        }
+        this.frame.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
         this.frame.setVisible(true);
     }
@@ -108,6 +105,16 @@ public class FrameManager {
     }
 
     /**
+     * Show a default dialog on the current frame
+     *
+     * @param title   is the question's title
+     * @param message is the question message
+     */
+    public int showDefaultDialog(String title, String message) {
+        return JOptionPane.showConfirmDialog(this.getFrame(), message, title, JOptionPane.DEFAULT_OPTION);
+    }
+
+    /**
      * Show an input dialog on the current frame
      *
      * @param title   is the input's title
@@ -143,11 +150,6 @@ public class FrameManager {
 
     public Image getFavicon() {
         return favicon;
-    }
-
-    public void setFavicon(String path) {
-        ImageIcon favicon = new ImageIcon(path);
-        this.setFavicon(favicon.getImage());
     }
 
     public void setFavicon(Image favicon) {

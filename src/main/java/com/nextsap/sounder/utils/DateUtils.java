@@ -59,18 +59,6 @@ public class DateUtils {
     }
 
     /**
-     * If the time is between x and y
-     *
-     * @param value the time
-     * @param start first time
-     * @param end   second time
-     * @return a boolean
-     */
-    public static boolean isBetween(long value, long start, long end) {
-        return value >= start && value <= end;
-    }
-
-    /**
      * If the time is longer than x
      *
      * @param value the time

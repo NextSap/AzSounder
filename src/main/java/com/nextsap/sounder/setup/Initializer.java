@@ -1,6 +1,8 @@
 package com.nextsap.sounder.setup;
 
+import com.nextsap.sounder.graphics.FrameManager;
 import com.nextsap.sounder.utils.Settings;
+import com.nextsap.sounder.utils.SystemTrayUtils;
 
 import java.io.*;
 import java.net.URL;
@@ -8,11 +10,13 @@ import java.net.URLConnection;
 
 public class Initializer {
 
-    public boolean initialize() {
+    public boolean initialize(FrameManager frame) {
         try {
             createFolder();
             createFile();
             dlIcon();
+            dlTrayIcon();
+            SystemTrayUtils.createTrayIcon(frame);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -24,12 +28,19 @@ public class Initializer {
         try {
             String name = System.getProperty("user.name");
             File config = new File("C:\\Users\\" + name + "\\AppData\\Roaming\\AzSounder\\Config.txt");
+            File currentLogs = new File("C:\\Users\\" + name + "\\AppData\\Roaming\\AzSounder\\CurrentLogs.txt");
 
             if (!config.exists()) {
                 config.createNewFile();
-                System.out.println("Le fichier 'config.txt' a bien été créé.");
+                System.out.println("Le fichier 'Config.txt' a bien été créé.");
             } else
-                System.out.println("Le fichier 'config.txt' existe déjà.");
+                System.out.println("Le fichier 'Config.txt' existe déjà.");
+
+            if (!currentLogs.exists()) {
+                currentLogs.createNewFile();
+                System.out.println("Le fichier 'CurrentLogs.txt' a bien été créé.");
+            } else
+                System.out.println("Le fichier 'CurrentLogs.txt' existe déjà.");
 
         } catch (Exception e) {
             System.out.println("Une erreur est survenue : ");
@@ -60,7 +71,7 @@ public class Initializer {
         File file = new File(Settings.getIconPath());
         if (!file.exists()) {
             try {
-                URL url = new URL("https://mamak.s-ul.eu/bdl76DvI");
+                URL url = new URL("https://mamak.s-ul.eu/bdl76DvI"); // TODO: Create on mine
                 URLConnection urlConnection = url.openConnection();
                 urlConnection.setRequestProperty("User-Agent", "NING/1.0");
                 InputStream bufferedReader = new BufferedInputStream(urlConnection.getInputStream());
@@ -74,6 +85,35 @@ public class Initializer {
                 bufferedReader.close();
                 byte[] response = out.toByteArray();
                 FileOutputStream fos = new FileOutputStream(Settings.getIconPath());
+                fos.write(response);
+                fos.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Download an tray icon from the web
+     */
+    private void dlTrayIcon() {
+        File file = new File(Settings.getTrayIconPath());
+        if (!file.exists()) {
+            try {
+                URL url = new URL("https://nextsap.s-ul.eu/MqHwhpt7");
+                URLConnection urlConnection = url.openConnection();
+                urlConnection.setRequestProperty("User-Agent", "NING/1.0");
+                InputStream bufferedReader = new BufferedInputStream(urlConnection.getInputStream());
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                byte[] buf = new byte[1024];
+                int n;
+                while (-1 != (n = bufferedReader.read(buf))) {
+                    out.write(buf, 0, n);
+                }
+                out.close();
+                bufferedReader.close();
+                byte[] response = out.toByteArray();
+                FileOutputStream fos = new FileOutputStream(Settings.getTrayIconPath());
                 fos.write(response);
                 fos.close();
             } catch (Exception e) {
