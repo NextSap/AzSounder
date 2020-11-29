@@ -69,7 +69,7 @@ public class Loader {
                                 }
                                 break;
                             case CHAT:
-                                if (!SplitUtils.isChat(log) && !SplitUtils.isFreecube(log)) return;
+                                if (!SplitUtils.isChat(log) && !SplitUtils.isFreecube(log) && !SplitUtils.isGameChat(log)) return;
                                 if (SplitUtils.parseChat(log).contains(name.toLowerCase())) {
                                     SoundUtils.play(filter.getSound_path());
                                     System.out.println("[DEBUG] (" + name + ") >>>" + log);

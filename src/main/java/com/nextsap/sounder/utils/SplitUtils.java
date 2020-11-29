@@ -19,12 +19,28 @@ public class SplitUtils {
     }
 
     public static boolean isFreecube(String line) {
-        if (!line.contains(" -> ") && !line.contains("]")) return false;
+        if (line.contains("[") && line.contains(" -> ") && line.contains("] ")) {
+            String pseudo = line.split(" ")[1];
+            String zone = line.split(" -> ")[1].split("] ")[0];
 
-        String pseudo = line.split(" ")[1];
-        String zone = line.split(" -> ")[1].split("] ")[0];
+            return pseudo.matches(playerPattern) && (zone.matches("([A-D][0-9]{1,6})") || zone.equals("Spawn"));
+        }
+        return false;
+    }
+    
+    public static boolean isGameChat(String line) {
+        if (line.contains("[") && line.contains(" -> ") && line.contains("] ")) {
+            String pseudo = line.split(" ")[1];
+            String team = line.split(" -> ")[1].split("] ")[0];
+            return pseudo.matches(playerPattern) && isTeam(team);
+        }
+        return false;
+    }
 
-        return pseudo.matches(playerPattern) && (zone.matches("([A-D][0-9]{1,6})") || line.contains(" -> Spawn] "));
+    public static boolean isTeam(String line) {
+        return line.equals("Rouge") || line.equals("Orange") || line.equals("Jaune") || line.equals("Vert") ||
+                line.equals("Bleu") || line.equals("Rose") || line.equals("Violet") || line.equals("Gris") ||
+                line.equals("Noir") || line.equals("Blanc") || line.equals("Spectateur");
     }
 
     public static boolean isParty(String line) {
@@ -45,13 +61,13 @@ public class SplitUtils {
     }
 
     public static String parseChat(String line) {
+        if (isFreecube(line) || isGameChat(line))
+            return " " + ArraysUtils.split(line, "] ")[1].toLowerCase();
         if (isChat(line)) {
             if (line.contains(": @"))
                 return " " + ArraysUtils.split(line, ": @")[1].toLowerCase();
             return " " + ArraysUtils.split(line, ": ")[1].toLowerCase();
         }
-        if (isFreecube(line))
-            return " " + ArraysUtils.split(line, "] ")[1].toLowerCase();
         return null;
     }
 
