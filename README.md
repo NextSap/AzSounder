@@ -13,15 +13,15 @@ The main part of the application developed in 2 days on **21 and 22** November 2
 # How to use
 ### 🇬🇧 English
 When you start the program, you can see 3 buttons : one to turn on, one to turn off and one to config the program. The following 'On' and 'Off' button are just used to start or stop the task who checks in the AzLauncher chat.
-- To add a new filter in your program, you must click on "Options". After, enter a string to detect in the "String" case. Then, enter the path of the sound who will play. ⚠️ **Be careful ! The sound file's extention must be ".wav"** ⚠️ Finally, [choose a chat type](#chat-types) in the box.
+- To add a new filter in your program, you must click on "Options". After, enter a string to detect in the "Filtre" case. Then, enter the path of the sound who will play. ⚠️ **Be careful ! The sound file's extention must be ".wav"** ⚠️ Finally, [choose a chat type](#chat-types) in the box.
 After this following operations, click on the green button.
-- To remove a filter from your program, you must click on "Options". After, enter the string that you want to remove in the "String" case.
+- To remove a filter from your program, you must click on "Options". After, enter the string that you want to remove in the "Filtre" case.
 After this following operations, click on the red button.
 ### 🇫🇷 French
 Quand vous lancez le programme, vous pouvez voir 3 boutons : un pour démarrer, un pour arrêter et un pour configurer le programme. Les boutons 'On et 'Off' sont juste utilisés pour lancer ou arrêter la tâche qui filtre les logs de votre AzLauncher.
-- Pour ajouter un nouveau filtre dans votre programme, vous devez cliquer sur "Options". Après, entrez une chaîne de caractère à détecter dans la case "String". Ensuite, entrez le chemin d'accès au son qui sera joué lors de la détection. ⚠️ **Faites attention ! L'extention du fichier son doit être ".wav"** ⚠️ Finalement, [choisissez un type](#chat-types) dans la liste prévue à cet effet.
+- Pour ajouter un nouveau filtre dans votre programme, vous devez cliquer sur "Options". Après, entrez une chaîne de caractère à détecter dans la case "Filtre". Ensuite, entrez le chemin d'accès au son qui sera joué lors de la détection. ⚠️ **Faites attention ! L'extention du fichier son doit être ".wav"** ⚠️ Finalement, [choisissez un type](#chat-types) dans la liste prévue à cet effet.
 Après avoir fait ces différentes opérations, cliquez sur le bouton vert.
-- Pour supprimer un filtre de votre programme, vous devez cliquer sur "Options". Après, entrez la chaîne de caractère qui correspond à celle que vous voulez supprimer dans la case "String".
+- Pour supprimer un filtre de votre programme, vous devez cliquer sur "Options". Après, entrez la chaîne de caractère qui correspond à celle que vous voulez supprimer dans la case "Filtre".
 Après avoir fait ces différentes opérations, cliquez sur le bouton rouge.
 
 # Chat Types
