@@ -250,7 +250,7 @@ public class OptionFrame extends FrameManager {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("-----------------------------\n");
         this.configManager.getConfig().getCustomFilters().forEach((name, filter) -> {
-            stringBuilder.append("String: '").append(name).append("'").append("      ").append(filter.getActive()).append("\nSound Path: ")
+            stringBuilder.append("Filtre: '").append(name).append("'").append("      ").append(filter.getActive()).append("\nSound Path: ")
                     .append(filter.getSound_path()).append("\nOption: ").append(filter.getOptions().getName()).append("\n-----------------------------\n");
         });
         this.showInformationDialog("AzSounder - Liste des filtres", stringBuilder.toString());
