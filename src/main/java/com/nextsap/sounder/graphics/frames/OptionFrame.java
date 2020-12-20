@@ -13,14 +13,21 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.Objects;
 
+/**
+ * An {@link FrameManager} extended class option frame
+ */
 public class OptionFrame extends FrameManager {
 
+    // Define attributes
     private final ConfigManager configManager = AzSounder.getConfigManager();
     private final JTextField stringTextField = new JTextField();
     private final JTextField soundPathTextField = new JTextField();
     private final JCheckBox activeBox = new JCheckBox("Activé ?");
     private final JComboBox<String> valueBox = new JComboBox<>(new String[]{"Global", "Chat", "Message privé", "Chat de Groupe", "Chat du Staff"});
 
+    /**
+     * {@link OptionFrame} constructor
+     */
     public OptionFrame() {
         this.setTitle("AzSounder - Options");
         this.setWidth(560);
@@ -212,12 +219,22 @@ public class OptionFrame extends FrameManager {
         this.hide();
     }
 
+    /**
+     * 'Back' click event
+     *
+     * @param event {@link ActionEvent}
+     */
     private void backClickEvent(ActionEvent event) {
         this.stringTextField.setText("");
         this.soundPathTextField.setText("");
         this.hide();
     }
 
+    /**
+     * 'Search' click event
+     *
+     * @param event {@link ActionEvent}
+     */
     private void searchClickEvent(ActionEvent event) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
@@ -229,10 +246,21 @@ public class OptionFrame extends FrameManager {
         }
     }
 
+    /**
+     * 'List' click event
+     *
+     * @param event {@link ActionEvent}
+     */
     private void listClickEvent(ActionEvent event) {
         getList();
     }
 
+    /**
+     * File exists or not
+     *
+     * @param file the {@link File}
+     * @return {@link Boolean}
+     */
     private boolean fileExists(File file) {
         if (!file.exists()) {
             this.showErrorDialog("Erreur", "Ce fichier son n'existe pas.");
@@ -245,6 +273,9 @@ public class OptionFrame extends FrameManager {
         return true;
     }
 
+    /**
+     * Open a info dialog with the list of filters
+     */
     private void getList() {
         this.configManager.update();
         StringBuilder stringBuilder = new StringBuilder();

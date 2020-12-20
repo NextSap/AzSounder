@@ -1,5 +1,7 @@
 package com.nextsap.sounder.utils;
-
+/*
+    A class to call different essential paths
+ */
 public class Settings {
 
     /**
@@ -26,6 +28,9 @@ public class Settings {
         return iconPath.replace("${name}", System.getProperty("user.name"));
     }
 
+    /**
+     * @return Current log path
+     */
     public static String getCurrentLogPath() {
         String path = "C:\\Users\\${name}\\AppData\\Roaming\\AzSounder\\CurrentLogs.txt";
         return path.replace("${name}", System.getProperty("user.name"));

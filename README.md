@@ -36,7 +36,7 @@ This one is only the message when a player send to you a private message.
 - Party Chat<br>
 This one is only the message when a player (or you) send a message in the party chat.
 - Staff Chat<br>
-This one is only the message when a player (or you) send a message in the staff (staff, mod or supermod supported) chat.
+This one is only the message when a player (or you) send a message in the staff (staff, mod, supermod and admin supported) chat.
 
 ⚠️ If you want to detect all messages from Global, Chat or anything else, you have to put in the "String" case a simple space character and so all messages will be detected.
 ### 🇫🇷 French
@@ -50,7 +50,7 @@ Celui-ci est uniquement le message quand un joueur vous envoie un message privé
 - Chat de groupe<br>
 Celui-ci est uniquement le message quand un joueur (ou vous) envoie un message dans le chat du groupe.
 - Chat du Staff<br>
-Celui-ci est uniquement le message quand un joueur (ou vous) envoie un message dans le chat du staff (staff, modo, supermodo supporté).
+Celui-ci est uniquement le message quand un joueur (ou vous) envoie un message dans le chat du staff (staff, modo, supermodo et admin supportés).
 
 ⚠️ Si vous voulez détecter tous les messages dans le chat 'Global' ou dans le chat 'Message privé' ou n'importe quel autre chat, vous devez introduire dans la case "String" le caractère espace et donc tous les messages seront détecté. 
 

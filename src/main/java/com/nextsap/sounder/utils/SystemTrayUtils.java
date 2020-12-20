@@ -6,9 +6,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+/*
+    A class to manage system tray
+ */
 public class SystemTrayUtils {
 
+    // Define attributes
     public static final SystemTray tray = SystemTray.getSystemTray();
     public static TrayIcon trayIcon;
 

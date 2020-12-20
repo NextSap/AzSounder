@@ -7,9 +7,17 @@ import com.nextsap.sounder.utils.SystemTrayUtils;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
-
+/*
+    The initializer class
+ */
 public class Initializer {
 
+    /**
+     * {@link Initializer} constructor
+     *
+     * @param frame the default frame
+     * @return {@link Boolean} initialized or not
+     */
     public boolean initialize(FrameManager frame) {
         try {
             createFolder();
@@ -24,6 +32,9 @@ public class Initializer {
         }
     }
 
+    /**
+     * Create data files of the program
+     */
     private void createFile() {
         try {
             String name = System.getProperty("user.name");
@@ -49,7 +60,7 @@ public class Initializer {
     }
 
     /**
-     * Create program's folder
+     * Create the folder of the program
      */
     private void createFolder() {
         String name = System.getProperty("user.name");
@@ -65,7 +76,7 @@ public class Initializer {
     }
 
     /**
-     * Download an icon from the web
+     * Download the icon from the web
      */
     private void dlIcon() {
         File file = new File(Settings.getIconPath());
@@ -94,7 +105,7 @@ public class Initializer {
     }
 
     /**
-     * Download an tray icon from the web
+     * Download the tray icon from the web
      */
     private void dlTrayIcon() {
         File file = new File(Settings.getTrayIconPath());

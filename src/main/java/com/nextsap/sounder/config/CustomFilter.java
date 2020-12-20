@@ -1,19 +1,33 @@
 package com.nextsap.sounder.config;
 
+/**
+ * An object class 'CustomFilter'
+ */
 public class CustomFilter {
 
+    // Define attributes
     private String sound_path;
 
     private Options options;
 
     private boolean active;
 
+    /**
+     * {@link CustomFilter} constructor
+     *
+     * @param sound_path the sound path
+     * @param options the {@link Options}
+     * @param active is active or not
+     */
     public CustomFilter(String sound_path, Options options, boolean active) {
         this.sound_path = sound_path;
         this.options = options;
         this.active = active;
     }
 
+    /**
+     * {@link CustomFilter} constructor
+     */
     public CustomFilter() {
         this.sound_path = "";
         this.options = Options.GLOBAL;

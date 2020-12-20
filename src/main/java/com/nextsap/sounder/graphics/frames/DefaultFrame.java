@@ -8,13 +8,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
+/**
+ * An {@link FrameManager} extended class default frame
+ */
 public class DefaultFrame extends FrameManager {
 
+    // Define attributes
     private final JButton onButton = new JButton("On");
     private final JButton offButton = new JButton("Off");
 
     private Loader loader;
 
+    /**
+     * {@link DefaultFrame} constructor
+     */
     public DefaultFrame() {
         this.setTitle("AzSounder");
         this.setWidth(300);
@@ -91,18 +98,33 @@ public class DefaultFrame extends FrameManager {
         this.getPanel().add(buttonPanel, constraints);
     }
 
+    /**
+     * 'On' click event
+     *
+     * @param event {@link ActionEvent}
+     */
     private void onClickEvent(ActionEvent event) {
         this.onButton.setEnabled(false);
         this.offButton.setEnabled(true);
         this.loader = new Loader();
     }
 
+    /**
+     * 'Off' click event
+     *
+     * @param event {@link ActionEvent}
+     */
     private void offClickEvent(ActionEvent event) {
         this.onButton.setEnabled(true);
         this.offButton.setEnabled(false);
         this.loader.getTimer().cancel();
     }
 
+    /**
+     * 'Option' click event
+     *
+     * @param event {@link ActionEvent}
+     */
     private void optionClickEvent(ActionEvent event) {
         new OptionFrame().show();
         try {

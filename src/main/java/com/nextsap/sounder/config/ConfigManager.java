@@ -7,14 +7,24 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.Scanner;
 
+/**
+ * A class to manage config
+ */
 public class ConfigManager {
 
+    // Define attribute
     private CustomConfig config;
 
+    /**
+     * {@link ConfigManager} constructor
+     */
     public ConfigManager() {
         getConfigFromFile();
     }
 
+    /**
+     * Update the config
+     */
     public void update() {
         try {
             String name = System.getProperty("user.name");
@@ -28,6 +38,9 @@ public class ConfigManager {
         }
     }
 
+    /**
+     * Get the config from the file
+     */
     public void getConfigFromFile() {
         try {
             String name = System.getProperty("user.name");
@@ -49,6 +62,9 @@ public class ConfigManager {
         }
     }
 
+    /**
+     * @return the {@link CustomConfig}
+     */
     public CustomConfig getConfig() {
         return this.config;
     }

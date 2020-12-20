@@ -1,5 +1,8 @@
 package com.nextsap.sounder.config;
 
+/**
+ * An enum with different chat
+ */
 public enum Options {
 
     GLOBAL("Global"),
@@ -8,8 +11,14 @@ public enum Options {
     PARTY("Chat de Groupe"),
     STAFF_CHAT("Chat du Staff");
 
+    // Define attribute
     private final String name;
 
+    /**
+     * {@link Options} constructor
+     *
+     * @param name the chat name
+     */
     Options(String name) {
         this.name = name;
     }
